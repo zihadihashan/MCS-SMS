@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>মেরিট কেয়ার স্কুল</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Hind Siliguri',sans-serif; font-size:15px; color:#333; background:#f5f5f5; }
+
+/* ===== TOP BAR ===== */
+.topbar { background:#1a5276; color:#fff; padding:5px 0; font-size:13px; }
+.topbar .container { display:flex; justify-content:space-between; align-items:center; }
+.topbar a { color:#fff; text-decoration:none; margin-right:10px; }
+.topbar a:hover { color:#f9ca24; }
+
+/* ===== HEADER ===== */
+.header { background:#fff; padding:10px 0; border-bottom:3px solid #1a5276; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+.header .container { display:flex; align-items:center; gap:15px; }
+.header-logo { width:80px; height:80px; background:#1a5276; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:28px; font-weight:700; flex-shrink:0; }
+.header-info h1 { font-size:22px; color:#1a5276; font-weight:700; line-height:1.2; }
+.header-info p { font-size:13px; color:#555; margin-top:3px; }
+.header-flag { margin-left:auto; }
+.header-flag img { height:60px; }
+
+/* ===== SLIDER ===== */
+.slider { position:relative; overflow:hidden; height:350px; background:#1a5276; }
+.slide { position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition:opacity 1s ease; }
+.slide.active { opacity:1; }
+.slide-bg { width:100%; height:100%; object-fit:cover; }
+.slide-content { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,0.7)); padding:20px 30px; color:#fff; }
+.slide-content h2 { font-size:20px; font-weight:700; }
+.slide-content p { font-size:14px; opacity:0.9; }
+.slide-placeholder { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; }
+.slide-placeholder-1 { background:linear-gradient(135deg,#1a5276,#2e86c1); }
+.slide-placeholder-2 { background:linear-gradient(135deg,#1e8449,#27ae60); }
+.slide-placeholder-3 { background:linear-gradient(135deg,#7d6608,#f39c12); }
+.slide-placeholder .icon { font-size:80px; margin-bottom:15px; }
+.slide-placeholder h2 { color:#fff; font-size:22px; font-weight:700; text-align:center; }
+.slider-dots { position:absolute; bottom:15px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:10; }
+.dot { width:10px; height:10px; background:rgba(255,255,255,0.5); border-radius:50%; cursor:pointer; border:none; }
+.dot.active { background:#fff; }
+
+/* ===== MARQUEE ===== */
+.marquee-bar { background:#e74c3c; color:#fff; padding:8px 0; overflow:hidden; }
+.marquee-inner { display:flex; animation:marquee 25s linear infinite; white-space:nowrap; }
+.marquee-inner span { padding-right:60px; font-size:14px; }
+@keyframes marquee { from{transform:translateX(100vw)} to{transform:translateX(-100%)} }
+.marquee-label { background:#c0392b; padding:8px 15px; font-weight:700; font-size:13px; flex-shrink:0; }
+
+/* ===== NAVBAR ===== */
+.navbar { background:#1a5276; position:sticky; top:0; z-index:1000; }
+.navbar .container { display:flex; align-items:center; flex-wrap:wrap; }
+.navbar-brand { color:#fff; padding:12px 15px; font-weight:700; font-size:14px; border-right:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; gap:8px; }
+nav { display:flex; flex-wrap:wrap; }
+nav a, .dropdown-btn { color:#fff; text-decoration:none; padding:12px 14px; display:flex; align-items:center; gap:5px; font-size:13.5px; border:none; background:none; cursor:pointer; font-family:'Hind Siliguri',sans-serif; white-space:nowrap; }
+nav a:hover, .dropdown-btn:hover { background:rgba(255,255,255,0.15); }
+nav a.active { background:rgba(255,255,255,0.2); border-bottom:3px solid #f9ca24; }
+.dropdown { position:relative; }
+.dropdown-menu { display:none; position:absolute; top:100%; left:0; background:#1a5276; min-width:200px; box-shadow:0 4px 15px rgba(0,0,0,0.3); z-index:999; }
+.dropdown:hover .dropdown-menu { display:block; }
+.dropdown-menu a { display:block; padding:10px 15px; color:#fff; text-decoration:none; font-size:13px; border-bottom:1px solid rgba(255,255,255,0.1); }
+.dropdown-menu a:hover { background:rgba(255,255,255,0.15); padding-left:20px; }
+
+/* ===== CONTAINER ===== */
+.container { max-width:1180px; margin:0 auto; padding:0 15px; }
+
+/* ===== MAIN LAYOUT ===== */
+.main-layout { display:grid; grid-template-columns:1fr 280px; gap:20px; padding:20px 0; }
+.main-content { min-width:0; }
+.sidebar { min-width:0; }
+
+/* ===== NOTICE SECTION ===== */
+.section-box { background:#fff; border-radius:4px; box-shadow:0 1px 5px rgba(0,0,0,0.08); margin-bottom:20px; overflow:hidden; }
+.section-title { background:#1a5276; color:#fff; padding:12px 15px; font-size:15px; font-weight:600; display:flex; align-items:center; gap:8px; }
+.section-title .icon { font-size:18px; }
+.section-body { padding:15px; }
+
+/* ===== NOTICE LIST ===== */
+.notice-list { list-style:none; }
+.notice-list li { padding:8px 0; border-bottom:1px dashed #ddd; display:flex; gap:10px; align-items:flex-start; }
+.notice-list li:last-child { border-bottom:none; }
+.notice-icon { color:#e74c3c; font-size:18px; flex-shrink:0; margin-top:2px; }
+.notice-list a { color:#1a5276; text-decoration:none; font-size:14px; line-height:1.4; }
+.notice-list a:hover { color:#e74c3c; text-decoration:underline; }
+.notice-date { font-size:11px; color:#888; margin-top:2px; }
+.view-all { display:inline-block; background:#1a5276; color:#fff; padding:7px 18px; border-radius:3px; font-size:13px; text-decoration:none; margin-top:12px; }
+.view-all:hover { background:#154360; }
+
+/* ===== CORNER CARDS ===== */
+.corner-cards { display:grid; grid-template-columns:1fr 1fr 1fr; gap:15px; margin-bottom:20px; }
+.corner-card { background:#fff; border-radius:4px; padding:20px 15px; text-align:center; box-shadow:0 1px 5px rgba(0,0,0,0.08); border-top:4px solid #1a5276; cursor:pointer; }
+.corner-card:nth-child(2) { border-top-color:#27ae60; }
+.corner-card:nth-child(3) { border-top-color:#e67e22; }
+.corner-card .card-icon { font-size:40px; margin-bottom:10px; }
+.corner-card h3 { font-size:14px; color:#333; font-weight:600; margin-bottom:8px; }
+.corner-card ul { list-style:none; text-align:left; }
+.corner-card ul li { font-size:13px; padding:4px 0; border-bottom:1px solid #f0f0f0; }
+.corner-card ul li a { color:#555; text-decoration:none; }
+.corner-card ul li a:hover { color:#1a5276; }
+
+/* ===== SIDEBAR BOXES ===== */
+.sidebar-box { background:#fff; border-radius:4px; box-shadow:0 1px 5px rgba(0,0,0,0.08); margin-bottom:15px; overflow:hidden; }
+.sidebar-title { background:#1a5276; color:#fff; padding:10px 12px; font-size:14px; font-weight:600; }
+.sidebar-body { padding:12px; }
+
+/* ===== PERSON CARD ===== */
+.person-card { text-align:center; padding:15px 10px; cursor:pointer; }
+.person-card img { width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid #1a5276; margin-bottom:8px; }
+.person-avatar { width:80px; height:80px; border-radius:50%; background:#1a5276; display:flex; align-items:center; justify-content:center; color:#fff; font-size:30px; margin:0 auto 8px; }
+.person-card h4 { font-size:14px; color:#1a5276; font-weight:700; }
+.person-card p { font-size:12px; color:#666; line-height:1.4; }
+.pm-section { background:#f8f9fa; border-radius:4px; padding:12px; text-align:center; margin-bottom:12px; }
+.pm-section .person-avatar { background:#8e44ad; }
+
+/* ===== LINKS LIST ===== */
+.links-list { list-style:none; }
+.links-list li { border-bottom:1px solid #eee; }
+.links-list li:last-child { border-bottom:none; }
+.links-list a { display:block; padding:7px 5px; color:#1a5276; text-decoration:none; font-size:13px; }
+.links-list a:hover { background:#f0f7ff; padding-left:10px; }
+.links-list a::before { content:"▶ "; font-size:10px; color:#e74c3c; }
+
+/* ===== HOTLINE IMAGE ===== */
+.hotline-img { width:100%; border-radius:4px; background:linear-gradient(135deg,#e74c3c,#c0392b); padding:15px; color:#fff; text-align:center; }
+.hotline-img h3 { font-size:16px; margin-bottom:10px; }
+.hotline-numbers { list-style:none; }
+.hotline-numbers li { padding:5px 0; font-size:14px; border-bottom:1px solid rgba(255,255,255,0.2); }
+.hotline-numbers li:last-child { border-bottom:none; }
+
+/* ===== VIDEO GALLERY SECTION ===== */
+.video-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.video-item { background:#000; border-radius:4px; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; color:#fff; font-size:30px; cursor:pointer; position:relative; overflow:hidden; }
+.video-item::before { content:"▶"; font-size:25px; position:relative; z-index:1; }
+
+/* ===== PAGE SECTIONS (hidden by default) ===== */
+.page-section { display:none; }
+.page-section.active { display:block; }
+
+/* ===== TABLE ===== */
+.data-table { width:100%; border-collapse:collapse; font-size:14px; }
+.data-table th { background:#1a5276; color:#fff; padding:10px 12px; text-align:left; font-weight:600; }
+.data-table td { padding:9px 12px; border-bottom:1px solid #eee; }
+.data-table tr:hover td { background:#f0f7ff; }
+.data-table .btn-view { background:#1a5276; color:#fff; padding:4px 10px; border-radius:3px; text-decoration:none; font-size:12px; margin-right:5px; }
+.data-table .btn-dl { background:#27ae60; color:#fff; padding:4px 10px; border-radius:3px; text-decoration:none; font-size:12px; }
+
+/* ===== FORM ===== */
+.form-group { margin-bottom:14px; }
+.form-group label { display:block; font-size:13px; font-weight:600; color:#555; margin-bottom:5px; }
+.form-group label .req { color:#e74c3c; }
+.form-control { width:100%; padding:9px 12px; border:1px solid #ccc; border-radius:4px; font-family:'Hind Siliguri',sans-serif; font-size:14px; }
+.form-control:focus { outline:none; border-color:#1a5276; box-shadow:0 0 0 2px rgba(26,82,118,0.1); }
+select.form-control { background:#fff; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+.btn-submit { background:#1a5276; color:#fff; padding:10px 25px; border:none; border-radius:4px; cursor:pointer; font-family:'Hind Siliguri',sans-serif; font-size:15px; font-weight:600; }
+.btn-submit:hover { background:#154360; }
+.form-notice { background:#fff8e1; border-left:4px solid #f9ca24; padding:12px; margin-bottom:20px; font-size:13px; color:#555; border-radius:0 4px 4px 0; }
+
+/* ===== ADMISSION CHECK ===== */
+.check-box { background:#f8f9fa; border:1px solid #ddd; border-radius:4px; padding:15px; margin-top:20px; }
+.check-box h4 { font-size:14px; font-weight:600; margin-bottom:12px; color:#1a5276; }
+.check-row { display:flex; gap:10px; align-items:center; }
+.check-row .form-control { flex:1; }
+.btn-check { background:#e74c3c; color:#fff; padding:9px 18px; border:none; border-radius:4px; cursor:pointer; font-family:'Hind Siliguri',sans-serif; font-size:14px; white-space:nowrap; }
+
+/* ===== ABOUT SECTION ===== */
+.about-content { font-size:14px; line-height:1.9; color:#444; }
+.about-content p { margin-bottom:15px; }
+.about-img { width:100%; max-width:400px; border-radius:4px; border:3px solid #1a5276; float:right; margin:0 0 15px 20px; background:#e8f4f8; height:200px; display:flex; align-items:center; justify-content:center; font-size:60px; }
+
+/* ===== GALLERY ===== */
+.gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.gallery-item { aspect-ratio:4/3; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:40px; overflow:hidden; cursor:pointer; }
+.gallery-item:nth-child(1) { background:linear-gradient(135deg,#1a5276,#2e86c1); }
+.gallery-item:nth-child(2) { background:linear-gradient(135deg,#1e8449,#27ae60); }
+.gallery-item:nth-child(3) { background:linear-gradient(135deg,#7d6608,#f39c12); }
+.gallery-item:nth-child(4) { background:linear-gradient(135deg,#6c3483,#8e44ad); }
+.gallery-item:nth-child(5) { background:linear-gradient(135deg,#922b21,#e74c3c); }
+.gallery-item:nth-child(6) { background:linear-gradient(135deg,#0e6655,#1abc9c); }
+
+/* ===== CONTACT ===== */
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:25px; }
+.contact-info-item { display:flex; gap:12px; align-items:flex-start; margin-bottom:15px; }
+.contact-icon { font-size:24px; flex-shrink:0; }
+.contact-text h4 { font-size:14px; font-weight:700; color:#1a5276; margin-bottom:3px; }
+.contact-text p { font-size:14px; color:#555; }
+
+/* ===== ADMIT CARD / RESULT ===== */
+.lookup-box { background:#fff; border-radius:4px; padding:25px; max-width:500px; box-shadow:0 1px 5px rgba(0,0,0,0.08); }
+.lookup-box h3 { font-size:16px; font-weight:700; color:#1a5276; margin-bottom:20px; padding-bottom:10px; border-bottom:2px solid #1a5276; }
+
+/* ===== FOOTER ===== */
+footer { background:#154360; color:#ccc; padding:30px 0 0; margin-top:30px; }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:25px; padding-bottom:20px; }
+.footer-about h3 { color:#fff; font-size:16px; font-weight:700; margin-bottom:12px; }
+.footer-about p { font-size:13px; line-height:1.8; }
+.footer-links h3 { color:#fff; font-size:15px; font-weight:700; margin-bottom:12px; }
+.footer-links ul { list-style:none; }
+.footer-links ul li { padding:4px 0; }
+.footer-links ul li a { color:#bbb; text-decoration:none; font-size:13px; }
+.footer-links ul li a:hover { color:#f9ca24; }
+.footer-links ul li a::before { content:"→ "; font-size:11px; }
+.footer-bottom { background:#0d2c3d; padding:12px 0; text-align:center; font-size:13px; color:#888; border-top:1px solid #1a5276; margin-top:10px; }
+.footer-bottom a { color:#f9ca24; text-decoration:none; }
+
+/* ===== PAGE HERO ===== */
+.page-hero { background:linear-gradient(135deg,#1a5276,#2e86c1); color:#fff; padding:20px 0; margin-bottom:20px; }
+.page-hero h2 { font-size:22px; font-weight:700; }
+.page-hero .breadcrumb { font-size:13px; opacity:0.8; margin-top:5px; }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px) {
+  .main-layout { grid-template-columns:1fr; }
+  .corner-cards { grid-template-columns:1fr; }
+  .footer-grid { grid-template-columns:1fr; }
+  .form-row { grid-template-columns:1fr; }
+  .gallery-grid { grid-template-columns:1fr 1fr; }
+  .contact-grid { grid-template-columns:1fr; }
+  nav { display:none; }
+  nav.open { display:flex; flex-direction:column; width:100%; }
+  .navbar-toggle { display:block; color:#fff; background:none; border:none; font-size:22px; padding:12px; cursor:pointer; margin-left:auto; }
+  .header-info h1 { font-size:17px; }
+  .slider { height:200px; }
+  .data-table { font-size:12px; }
+}
+@media(min-width:769px) { .navbar-toggle { display:none; } }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <div>
+      <span>📞 ০১৭XXX-XXXXXX</span>
+      <a href="#contact-page" onclick="showPage('contact')">✉ info@meritcareschool.edu.bd</a>
+    </div>
+    <div>
+      <a href="#">বাংলা</a> | <a href="#">English</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="container">
+    <div class="header-logo">ম</div>
+    <div class="header-info">
+      <h1>মেরিট কেয়ার স্কুল</h1>
+      <p>হাবিবপুর, বিরামপুর, দিনাজপুর</p>
+      <p style="font-size:12px;color:#888;">পরিচালনায়: আইডিয়াল লাইট হাউজ ফাউন্ডেশন</p>
+    </div>
+    <div class="header-flag" style="margin-left:auto;text-align:right;">
+      <div style="background:linear-gradient(135deg,#006a4e,#f42a41);width:70px;height:45px;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;">🇧🇩</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDER -->
+<div class="slider" id="mainSlider">
+  <div class="slide active">
+    <div class="slide-placeholder slide-placeholder-1">
+      <div class="icon">🏫</div>
+      <h2>মেরিট কেয়ার স্কুল, হাবিবপুর</h2>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-placeholder slide-placeholder-2">
+      <div class="icon">💻</div>
+      <h2>সুবিশাল আধুনিক কম্পিউটার ল্যাব</h2>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-placeholder slide-placeholder-3">
+      <div class="icon">📚</div>
+      <h2>সমৃদ্ধ পাঠাগার ও শ্রেণিকক্ষ</h2>
+    </div>
+  </div>
+  <div class="slider-dots">
+    <button class="dot active" onclick="goSlide(0)"></button>
+    <button class="dot" onclick="goSlide(1)"></button>
+    <button class="dot" onclick="goSlide(2)"></button>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="container">
+    <div class="navbar-brand">
+      <span>🏠</span> মেরিট কেয়ার স্কুল
+    </div>
+    <button class="navbar-toggle" onclick="toggleNav()">☰</button>
+    <nav id="mainNav">
+      <a href="#" onclick="showPage('home')" class="active">প্রধান পাতা</a>
+      <a href="#" onclick="showPage('about')">প্রতিষ্ঠানের ইতিহাস</a>
+      <a href="#" onclick="showPage('teachers')">শিক্ষক</a>
+      <a href="#" onclick="showPage('admission')">অনলাইন এডমিশন</a>
+      <a href="#" onclick="showPage('gallery')">ফটো গ্যালারী</a>
+      <a href="#" onclick="showPage('video')">ভিডিও</a>
+      <a href="#" onclick="showPage('news')">নোটিশ</a>
+      <div class="dropdown">
+        <button class="dropdown-btn">একাডেমিক তথ্য ▾</button>
+        <div class="dropdown-menu">
+          <a href="#" onclick="showPage('admit_card')">এডমিট কার্ড</a>
+          <a href="#" onclick="showPage('exam_results')">পরীক্ষার রেজাল্ট</a>
+          <a href="#" onclick="showPage('certificates')">সার্টিফিকেট</a>
+        </div>
+      </div>
+      <a href="#" onclick="showPage('contact')">যোগাযোগ</a>
+      <div class="dropdown">
+        <button class="dropdown-btn">লগইন ▾</button>
+        <div class="dropdown-menu">
+          <a href="#" onclick="showPage('login')">শিক্ষক লগইন</a>
+          <a href="#" onclick="showPage('login')">স্টাফ লগ-ইন</a>
+          <a href="#" onclick="showPage('login')">শিক্ষার্থী লগইন</a>
+          <a href="#" onclick="showPage('login')">অভিভাবক লগ-ইন</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div style="display:flex;overflow:hidden;">
+    <div class="marquee-label">জরুরি ঘোষণা :</div>
+    <div style="overflow:hidden;flex:1;">
+      <div class="marquee-inner">
+        <span>আমাদের মেরিট কেয়ার স্কুলের ওয়েবসাইটে আপনাকে স্বাগতম। ২০২৫ সালের ভর্তি কার্যক্রম চলমান। বিস্তারিত জানতে অনলাইন এডমিশন মেনু দেখুন।</span>
+        <span>আমাদের মেরিট কেয়ার স্কুলের ওয়েবসাইটে আপনাকে স্বাগতম। ২০২৫ সালের ভর্তি কার্যক্রম চলমান। বিস্তারিত জানতে অনলাইন এডমিশন মেনু দেখুন।</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MAIN PAGES ===== -->
+<div id="page-home" class="page-section active">
+<div class="container">
+<div class="main-layout">
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <!-- NOTICE -->
+    <div class="section-box">
+      <div class="section-title"><span class="icon">📋</span> নোটিশ</div>
+      <div class="section-body">
+        <ul class="notice-list">
+          <li>
+            <span class="notice-icon">🔴</span>
+            <div>
+              <a href="#" onclick="showPage('news')">২০২৫ শিক্ষাবর্ষে ১ম শ্রেণিতে ভর্তি সংক্রান্ত বিজ্ঞপ্তি</a>
+              <div class="notice-date">০১ জানুয়ারি ২০২৫</div>
+            </div>
+          </li>
+          <li>
+            <span class="notice-icon">🔴</span>
+            <div>
+              <a href="#" onclick="showPage('news')">ডিসেম্বর ২০২৪ মাসের বেতন পরিশোধ সংক্রান্ত বিজ্ঞপ্তি</a>
+              <div class="notice-date">০১ জানুয়ারি ২০২৫</div>
+            </div>
+          </li>
+          <li>
+            <span class="notice-icon">🔴</span>
+            <div>
+              <a href="#" onclick="showPage('news')">বার্ষিক পরীক্ষার রুটিন প্রকাশ সংক্রান্ত বিজ্ঞপ্তি</a>
+              <div class="notice-date">১৫ ডিসেম্বর ২০২৪</div>
+            </div>
+          </li>
+          <li>
+            <span class="notice-icon">🔴</span>
+            <div>
+              <a href="#" onclick="showPage('news')">স্কুল বাস সেবা সংক্রান্ত বিজ্ঞপ্তি ২০২৫</a>
+              <div class="notice-date">০১ জানুয়ারি ২০২৫</div>
+            </div>
+          </li>
+          <li>
+            <span class="notice-icon">🔴</span>
+            <div>
+              <a href="#" onclick="showPage('news')">বৃত্তি সংক্রান্ত প্রতারণা বিষয়ে সতর্কতা</a>
+              <div class="notice-date">০১ জানুয়ারি ২০২৫</div>
+            </div>
+          </li>
+          <li>
+            <span class="notice-icon">🔴</span>
+            <div>
+              <a href="#" onclick="showPage('news')">সেপ্টেম্বর ২০২৪ মাসের বেতন পরিশোধ সংক্রান্ত বিজ্ঞপ্তি</a>
+              <div class="notice-date">০১ অক্টোবর ২০২৪</div>
+            </div>
+          </li>
+        </ul>
+        <a href="#" onclick="showPage('news')" class="view-all">সকল নোটিশ</a>
+      </div>
+    </div>
+
+    <!-- CORNER CARDS -->
+    <div class="corner-cards">
+      <div class="corner-card">
+        <div class="card-icon">🎓</div>
+        <h3>শিক্ষার্থী ও অভিভাবকদের কর্ণার</h3>
+        <ul>
+          <li><a href="#" onclick="showPage('admit_card')">এডমিট কার্ড ডাউনলোড</a></li>
+          <li><a href="#" onclick="showPage('exam_results')">পরীক্ষার ফলাফল</a></li>
+          <li><a href="#" onclick="showPage('certificates')">সার্টিফিকেট ডাউনলোড</a></li>
+          <li><a href="#" onclick="showPage('news')">নোটিশ দেখুন</a></li>
+        </ul>
+      </div>
+      <div class="corner-card">
+        <div class="card-icon">👩‍🏫</div>
+        <h3>শিক্ষক ও স্টাফদের কর্ণার</h3>
+        <ul>
+          <li><a href="#" onclick="showPage('login')">শিক্ষক পোর্টাল</a></li>
+          <li><a href="#" onclick="showPage('login')">স্টাফ লগইন</a></li>
+          <li><a href="#" onclick="showPage('teachers')">শিক্ষকবৃন্দ</a></li>
+          <li><a href="#" onclick="showPage('news')">নোটিশ বোর্ড</a></li>
+        </ul>
+      </div>
+      <div class="corner-card">
+        <div class="card-icon">⬇️</div>
+        <h3>সকল ডাউনলোড</h3>
+        <ul>
+          <li><a href="#" onclick="showPage('admit_card')">এডমিট কার্ড ডাউনলোড</a></li>
+          <li><a href="#" onclick="showPage('exam_results')">মার্কশিট ডাউনলোড</a></li>
+          <li><a href="#" onclick="showPage('certificates')">সার্টিফিকেট ডাউনলোড</a></li>
+          <li><a href="#" onclick="showPage('login')">ভর্তি ফরম ডাউনলোড</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ACADEMIC INFO + LAWS + PORTALS -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:20px;">
+      <div class="section-box">
+        <div class="section-title"><span class="icon">📖</span> একাডেমিক তথ্য</div>
+        <div class="section-body">
+          <ul class="links-list">
+            <li><a href="#" onclick="showPage('about')">প্রতিষ্ঠানের ইতিহাস</a></li>
+            <li><a href="#" onclick="showPage('exam_results')">পরীক্ষার ফলাফল</a></li>
+            <li><a href="#" onclick="showPage('news')">নোটিশ</a></li>
+            <li><a href="#" onclick="showPage('gallery')">ফটো গ্যালারী</a></li>
+            <li><a href="#" onclick="showPage('video')">ভিডিও গ্যালারী</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="section-box">
+        <div class="section-title"><span class="icon">⚖️</span> আইন ও বিধি</div>
+        <div class="section-body">
+          <ul class="links-list">
+            <li><a href="http://bdlaws.minlaw.gov.bd/" target="_blank">বিভাগীয় আইন</a></li>
+            <li><a href="http://bangladesh.gov.bd/" target="_blank">বিধিমালা</a></li>
+            <li><a href="https://bangladesh.gov.bd/" target="_blank">নীতিমালা</a></li>
+            <li><a href="https://bangladesh.gov.bd/" target="_blank">প্রজ্ঞাপন ও পরিপত্র</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:20px;">
+      <div class="section-box">
+        <div class="section-title"><span class="icon">📊</span> কর্মসম্পাদন ব্যবস্থাপনা</div>
+        <div class="section-body">
+          <ul class="links-list">
+            <li><a href="https://bangladesh.gov.bd/" target="_blank">প্রজ্ঞাপন/পরিপত্র/নীতিমালা</a></li>
+            <li><a href="https://bangladesh.gov.bd/" target="_blank">চুক্তিসমূহ</a></li>
+            <li><a href="https://bangladesh.gov.bd/" target="_blank">চুক্তির কাঠামো</a></li>
+            <li><a href="http://gpmsnew.bcc.gov.bd/" target="_blank">এপিএমএস</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="section-box">
+        <div class="section-title"><span class="icon">🌐</span> বিভিন্ন বাতায়ন</div>
+        <div class="section-body">
+          <ul class="links-list">
+            <li><a href="https://bangladesh.gov.bd/" target="_blank">মন্ত্রণালয়ের বাতায়ন</a></li>
+            <li><a href="https://www.bangladesh.gov.bd/" target="_blank">অধিদপ্তরের বাতায়ন</a></li>
+            <li><a href="https://bangladesh.gov.bd/" target="_blank">বিভাগীয় বাতায়ন</a></li>
+            <li><a href="https://www.bangladesh.gov.bd/" target="_blank">জেলা বাতায়ন</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMERGENCY CALL + VIDEO -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
+      <div class="section-box">
+        <div class="section-title"><span class="icon">📞</span> জরুরি কল</div>
+        <div class="section-body">
+          <ul class="links-list">
+            <li><a href="#">৩৩৩ থেকে তথ্য-সেবা</a></li>
+            <li><a href="#">কল সেন্টারসমূহ</a></li>
+            <li><a href="#">হেল্পডেস্ক</a></li>
+            <li><a href="#">ডাক্তারের সাথে যোগাযোগ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="section-box">
+        <div class="section-title"><span class="icon">🎬</span> ভিডিও গ্যালারী</div>
+        <div class="section-body">
+          <div class="video-grid">
+            <div class="video-item" style="background:#1a5276;"></div>
+            <div class="video-item" style="background:#1e8449;"></div>
+            <div class="video-item" style="background:#7d6608;"></div>
+            <div class="video-item" style="background:#6c3483;"></div>
+          </div>
+          <a href="#" onclick="showPage('video')" class="view-all" style="margin-top:10px;">সকল ভিডিও</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main-content -->
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <!-- PM -->
+    <div class="sidebar-box">
+      <div class="pm-section">
+        <div class="person-avatar">🎖️</div>
+        <h4 style="color:#1a5276;font-size:14px;font-weight:700;margin-top:8px;">ড. মোঃ ইউনুস</h4>
+        <p style="font-size:12px;color:#666;">প্রধানমন্ত্রী<br>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</p>
+      </div>
+    </div>
+
+    <!-- CHAIRMAN -->
+    <div class="sidebar-box">
+      <div class="person-card" onclick="showPage('sovapoti')">
+        <div class="person-avatar">👤</div>
+        <h4>সভাপতির বানী</h4>
+        <div style="background:#1a5276;height:2px;margin:6px auto;width:40px;border-radius:2px;"></div>
+        <h4 style="color:#333;">[সভাপতির নাম]</h4>
+        <p>সভাপতি<br>মেরিট কেয়ার স্কুল</p>
+      </div>
+    </div>
+
+    <!-- PRINCIPAL -->
+    <div class="sidebar-box">
+      <div class="person-card" onclick="showPage('principal')">
+        <div class="person-avatar" style="background:#27ae60;">👤</div>
+        <h4>প্রধান শিক্ষকের বানী</h4>
+        <div style="background:#27ae60;height:2px;margin:6px auto;width:40px;border-radius:2px;"></div>
+        <h4 style="color:#333;">[প্রধান শিক্ষকের নাম]</h4>
+        <p>প্রধান শিক্ষক<br>মেরিট কেয়ার স্কুল</p>
+      </div>
+    </div>
+
+    <!-- IMPORTANT LINKS -->
+    <div class="sidebar-box">
+      <div class="sidebar-title">গুরুত্বপূর্ণ লিঙ্ক</div>
+      <div class="sidebar-body">
+        <ul class="links-list">
+          <li><a href="http://www.moedu.gov.bd/" target="_blank">শিক্ষা মন্ত্রনালয়</a></li>
+          <li><a href="http://www.dhakaeducationboard.gov.bd/" target="_blank">মাধ্যমিক ও উচ্চমাধ্যমিক শিক্ষা বোর্ড, ঢাকা</a></li>
+          <li><a href="http://www.dshe.gov.bd/" target="_blank">মাধ্যমিক ও উচ্চশিক্ষা অধিদপ্তর</a></li>
+          <li><a href="http://www.nu.ac.bd/" target="_blank">জাতীয় বিশ্ববিদ্যালয়</a></li>
+          <li><a href="http://www.shed.gov.bd/" target="_blank">মাধ্যমিক ও উচ্চ শিক্ষা বিভাগ</a></li>
+          <li><a href="http://www.bteb.gov.bd/" target="_blank">বাংলাদেশ কারিগরি শিক্ষা বোর্ড</a></li>
+          <li><a href="http://www.pmeat.gov.bd/" target="_blank">প্রধানমন্ত্রীর শিক্ষা সহায়তা ট্রাস্ট</a></li>
+          <li><a href="http://www.pmo.gov.bd/" target="_blank">প্রধানমন্ত্রীর কার্যালয়</a></li>
+          <li><a href="http://www.cabinet.gov.bd/" target="_blank">মন্ত্রীপরিষদ বিভাগ</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- HOTLINE -->
+    <div class="sidebar-box">
+      <div class="sidebar-title">জরুরি হটলাইন</div>
+      <div class="sidebar-body" style="padding:0;">
+        <div class="hotline-img">
+          <h3>🚨 জরুরি হটলাইন</h3>
+          <ul class="hotline-numbers">
+            <li>🚒 ফায়ার সার্ভিস: 199</li>
+            <li>🚓 পুলিশ: 999</li>
+            <li>🚑 অ্যাম্বুলেন্স: 199</li>
+            <li>ℹ️ তথ্য সেবা: 333</li>
+            <li>🏥 স্বাস্থ্য সেবা: 16757</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- NATIONAL ANTHEM -->
+    <div class="sidebar-box">
+      <div class="sidebar-title">জাতীয় সংগীত</div>
+      <div class="sidebar-body" style="text-align:center;">
+        <div style="font-size:40px;margin-bottom:10px;">🎵</div>
+        <p style="font-size:13px;color:#666;line-height:1.8;">আমার সোনার বাংলা,<br>আমি তোমায় ভালোবাসি...</p>
+        <button style="background:#1a5276;color:#fff;border:none;padding:7px 15px;border-radius:3px;cursor:pointer;font-family:'Hind Siliguri',sans-serif;font-size:13px;margin-top:8px;">▶ শুনুন</button>
+      </div>
+    </div>
+
+  </div><!-- /sidebar -->
+</div><!-- /main-layout -->
+</div><!-- /container -->
+</div><!-- /page-home -->
+
+
+<!-- ===== ABOUT PAGE ===== -->
+<div id="page-about" class="page-section">
+  <div class="page-hero"><div class="container"><h2>প্রতিষ্ঠানের ইতিহাস</h2><div class="breadcrumb">প্রধান পাতা / প্রতিষ্ঠানের ইতিহাস</div></div></div>
+  <div class="container">
+    <div class="main-layout">
+      <div class="main-content">
+        <div class="section-box">
+          <div class="section-title"><span class="icon">🏫</span> প্রতিষ্ঠান সম্পর্কে :</div>
+          <div class="section-body">
+            <div class="about-content">
+              <div class="about-img">🏫</div>
+              <p>শিক্ষার্থীদের সু-শিক্ষায় শিক্ষিত করার লক্ষ্যে মেরিট কেয়ার স্কুল, হাবিবপুর, বিরামপুর, দিনাজপুর প্রতিষ্ঠানটি পাঠদান করে আসছে। মেরিট কেয়ার স্কুল প্রতিষ্ঠার পিছনে মূল উদ্দেশ্য ভবিষ্যতের চ্যালেঞ্জ মোকাবেলা করা, সর্বশেষ জ্ঞান, তথ্য, যোগাযোগ দক্ষতা এবং বাংলাদেশী সাংস্কৃতিক ঐতিহ্যের সংমিশ্রণ সহ একটি দৃষ্টিভঙ্গি সম্পর্কে শিক্ষা প্রদানের মাধ্যমে আত্মবিশ্বাসী এবং সফল শিক্ষার্থীদের গড়ে তোলা।</p>
+              <p>মানসম্পন্ন শিক্ষা নিশ্চিত করতে নিঃসন্দেহে মানুষের মন ও মস্তিষ্কের অনেক বেশি যত্ন প্রয়োজন। একাডেমিক অধ্যয়ন এবং সহ-পাঠক্রমিক কার্যক্রম একজন শিক্ষার্থীর শারীরিক ও মানসিক বিকাশ খুবই প্রয়োজনীয় একটি বিষয় এবং মেরিট কেয়ার স্কুল একাডেমিক অধ্যয়ন এবং সহপাঠ্যক্রমিক কার্যক্রমের জন্য একটি সুন্দর পরিবেশ নিশ্চিত করণে প্রতিশ্রুতিবদ্ধ।</p>
+              <p>মেরিট কেয়ার স্কুল প্রতিষ্ঠানের মাধ্যমে আমরা এ অঞ্চলের মানুষের স্বপ্ন বাস্তবায়ন হবে বলে আমরা আশাবাদী। আমরা শিক্ষার আলোয় আলোকিত হতে চাই এবং আমাদের মুক্তিযুদ্ধের মূল্যবোধে উদ্বুদ্ধ হয়ে আমাদের শিক্ষার্থীদের উন্নত মানুষ হিসেবে গড়ে তুলতে চাই।</p>
+              <p>মান সম্পন্ন শিক্ষা নিশ্চিত করণ এবং মানবিক মূল্যবোধ সম্পন্ন মানুষ গড়ে তোলাই মেরিট কেয়ার স্কুলের মূল উদ্দেশ্য। মুক্তিযুদ্ধের চেতনায় সমৃদ্ধ আলোকিত মানুষ গঠন ও ২০৪১ সালের উন্নত বাংলাদেশ উপযোগী আধুনিক শিক্ষায় শিক্ষিত মানব সম্পদ গঠনে প্রতিষ্ঠানটি ভূমিকা রাখবে বলে আমাদের বিশ্বাস।</p>
+              <p>আমি প্রতিষ্ঠানটির সর্বাঙ্গীন মঙ্গল কামনা করি।</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar" id="about-sidebar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TEACHERS PAGE ===== -->
+<div id="page-teachers" class="page-section">
+  <div class="page-hero"><div class="container"><h2>শিক্ষক মণ্ডলী</h2><div class="breadcrumb">প্রধান পাতা / শিক্ষক</div></div></div>
+  <div class="container">
+    <div class="main-layout">
+      <div class="main-content">
+        <div class="section-box">
+          <div class="section-title"><span class="icon">👩‍🏫</span> শিক্ষক মণ্ডলী</div>
+          <div class="section-body">
+            <table class="data-table">
+              <thead><tr><th>শিক্ষকের নাম</th><th>মোবাইল</th><th>পদবী</th><th>ছবি</th></tr></thead>
+              <tbody>
+                <tr><td>[প্রধান শিক্ষকের নাম]</td><td>০১XXXXXXXXX</td><td>প্রধান শিক্ষক</td><td><div style="width:40px;height:40px;background:#1a5276;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;">👤</div></td></tr>
+                <tr><td>[সহকারী শিক্ষক ১]</td><td>০১XXXXXXXXX</td><td>সহকারী শিক্ষক (বাংলা)</td><td><div style="width:40px;height:40px;background:#27ae60;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;">👤</div></td></tr>
+                <tr><td>[সহকারী শিক্ষক ২]</td><td>০১XXXXXXXXX</td><td>সহকারী শিক্ষক (ইংরেজি)</td><td><div style="width:40px;height:40px;background:#e67e22;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;">👤</div></td></tr>
+                <tr><td>[আইসিটি শিক্ষক]</td><td>০১XXXXXXXXX</td><td>আইসিটি শিক্ষক</td><td><div style="width:40px;height:40px;background:#8e44ad;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;">👤</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar" id="teachers-sidebar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ADMISSION PAGE ===== -->
+<div id="page-admission" class="page-section">
+  <div class="page-hero"><div class="container"><h2>অনলাইন এডমিশন</h2><div class="breadcrumb">প্রধান পাতা / অনলাইন এডমিশন</div></div></div>
+  <div class="container">
+    <div class="main-layout">
+      <div class="main-content">
+        <div class="section-box">
+          <div class="section-title"><span class="icon">📝</span> অনলাইন এডমিশন ফরম</div>
+          <div class="section-body">
+            <div class="form-notice">নিচের ফরমটি খুব সতর্কভাবে পুরন করুন, মনে রাখবেন যদি তথ্য ভুল বা মিথ্যা হয় তাহলে আবেদনটি বাতিল করা হবে। আবেদন ফি রিফান্ড যোগ্য নয়।</div>
+            <h4 style="color:#1a5276;margin-bottom:15px;font-size:15px;border-bottom:2px solid #1a5276;padding-bottom:8px;">একাডেমিক তথ্য</h4>
+            <div class="form-group">
+              <label>স্কুলের নাম <span class="req">*</span></label>
+              <input type="text" class="form-control" value="মেরিট কেয়ার স্কুল, হাবিবপুর, বিরামপুর" readonly>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>শ্রেণি <span class="req">*</span></label>
+                <select class="form-control">
+                  <option>নির্বাচন করুন</option>
+                  <option>প্লে</option>
+                  <option>নার্সারি</option>
+                  <option>প্রথম</option>
+                  <option>দ্বিতীয়</option>
+                  <option>তৃতীয়</option>
+                  <option>চতুর্থ</option>
+                  <option>পঞ্চম</option>
+                  <option>ষষ্ঠ</option>
+                  <option>সপ্তম</option>
+                  <option>অষ্টম</option>
+                  <option>নবম</option>
+                  <option>দশম</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>ভর্তির তারিখ <span class="req">*</span></label>
+                <input type="date" class="form-control">
+              </div>
+            </div>
+            <h4 style="color:#1a5276;margin:20px 0 15px;font-size:15px;border-bottom:2px solid #1a5276;padding-bottom:8px;">শিক্ষার্থীর তথ্য</h4>
+            <div class="form-row">
+              <div class="form-group">
+                <label>প্রথম নাম <span class="req">*</span></label>
+                <input type="text" class="form-control" placeholder="প্রথম নাম লিখুন">
+              </div>
+              <div class="form-group">
+                <label>শেষ নাম <span class="req">*</span></label>
+                <input type="text" class="form-control" placeholder="শেষ নাম লিখুন">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>লিঙ্গ</label>
+                <select class="form-control"><option>নির্বাচন করুন</option><option>ছেলে</option><option>মেয়ে</option></select>
+              </div>
+              <div class="form-group">
+                <label>জন্ম তারিখ</label>
+                <input type="date" class="form-control">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>রক্তের গ্রুপ</label>
+                <select class="form-control"><option>নির্বাচন করুন</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>O+</option><option>O-</option><option>AB+</option><option>AB-</option></select>
+              </div>
+              <div class="form-group">
+                <label>শিক্ষার্থীর মোবাইল</label>
+                <input type="tel" class="form-control" placeholder="মোবাইল নম্বর">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>ইমেইল</label>
+              <input type="email" class="form-control" placeholder="ইমেইল ঠিকানা">
+            </div>
+            <div class="form-group">
+              <label>ধর্ম</label>
+              <input type="text" class="form-control" placeholder="ধর্ম লিখুন">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>বর্তমান ঠিকানা</label>
+                <input type="text" class="form-control" placeholder="বর্তমান ঠিকানা">
+              </div>
+              <div class="form-group">
+                <label>স্থায়ী ঠিকানা</label>
+                <input type="text" class="form-control" placeholder="স্থায়ী ঠিকানা">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>শহর</label>
+                <input type="text" class="form-control" placeholder="শহর">
+              </div>
+              <div class="form-group">
+                <label>শিক্ষার্থীর ছবি</label>
+                <input type="file" class="form-control" accept="image/*">
+              </div>
+            </div>
+            <h4 style="color:#1a5276;margin:20px 0 15px;font-size:15px;border-bottom:2px solid #1a5276;padding-bottom:8px;">পূর্ববর্তী স্কুলের তথ্য</h4>
+            <div class="form-row">
+              <div class="form-group">
+                <label>স্কুলের নাম</label>
+                <input type="text" class="form-control" placeholder="পূর্ববর্তী স্কুলের নাম">
+              </div>
+              <div class="form-group">
+                <label>যোগ্যতা</label>
+                <input type="text" class="form-control" placeholder="শ্রেণি/পাস">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>মন্তব্য</label>
+              <textarea class="form-control" rows="2" placeholder="প্রয়োজনীয় মন্তব্য"></textarea>
+            </div>
+            <h4 style="color:#1a5276;margin:20px 0 15px;font-size:15px;border-bottom:2px solid #1a5276;padding-bottom:8px;">অভিভাবকের তথ্য</h4>
+            <div class="form-row">
+              <div class="form-group">
+                <label>পিতার নাম</label>
+                <input type="text" class="form-control" placeholder="পিতার নাম">
+              </div>
+              <div class="form-group">
+                <label>মাতার নাম</label>
+                <input type="text" class="form-control" placeholder="মাতার নাম">
+              </div>
+            </div>
+            <h4 style="color:#1a5276;margin:20px 0 15px;font-size:15px;border-bottom:2px solid #1a5276;padding-bottom:8px;">কাগজপত্র আপলোড</h4>
+            <div class="form-group">
+              <label>ডকুমেন্ট আপলোড <span class="req">*</span></label>
+              <input type="file" class="form-control">
+            </div>
+            <div style="background:#f8f9fa;border:1px solid #ddd;border-radius:4px;padding:12px;margin-bottom:15px;">
+              <h5 style="color:#e74c3c;font-size:13px;margin-bottom:8px;">শর্তাবলী</h5>
+              <p style="font-size:13px;color:#666;">মনে রাখবেন যদি তথ্য ভুল বা মিথ্যা হয় তাহলে আবেদনটি বাতিল করা হবে। আবেদন ফি রিফান্ড যোগ্য নয়।</p>
+            </div>
+            <button class="btn-submit" onclick="alert('আপনার আবেদন সফলভাবে জমা হয়েছে!')">জমা দিন</button>
+
+            <div class="check-box">
+              <h4>ভর্তির আবেদনের অবস্থা যাচাই করুন</h4>
+              <div class="check-row">
+                <input type="text" class="form-control" placeholder="রেফারেন্স নম্বর লিখুন">
+                <button class="btn-check" onclick="alert('তথ্য পাওয়া যায়নি। সঠিক রেফারেন্স নম্বর দিন।')">যাচাই করুন</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar" id="admission-sidebar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== GALLERY PAGE ===== -->
+<div id="page-gallery" class="page-section">
+  <div class="page-hero"><div class="container"><h2>ফটো গ্যালারী</h2><div class="breadcrumb">প্রধান পাতা / ফটো গ্যালারী</div></div></div>
+  <div class="container">
+    <div class="main-layout">
+      <div class="main-content">
+        <div class="section-box">
+          <div class="section-title"><span class="icon">🖼️</span> ফটো গ্যালারী</div>
+          <div class="section-body">
+            <div class="gallery-grid">
+              <div class="gallery-item">🏫</div>
+              <div class="gallery-item">📚</div>
+              <div class="gallery-item">💻</div>
+              <div class="gallery-item">🎓</div>
+              <div class="gallery-item">🏆</div>
+              <div class="gallery-item">🌿</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar" id="gallery-sidebar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VIDEO PAGE ===== -->
+<div id="page-video" class="page-section">
+  <div class="page-hero"><div class="container"><h2>ভিডিও গ্যালারী</h2><div class="breadcrumb">প্রধান পাতা / ভিডিও</div></div></div>
+  <div class="container">
+    <div class="main-layout">
+      <div class="main-content">
+        <div class="section-box">
+          <div class="section-title"><span class="icon">🎬</span> ভিডিও গ্যালারী</div>
+          <div class="section-body">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
+              <div style="aspect-ratio:16/9;background:#1a5276;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;cursor:pointer;">
+                <span style="font-size:40px;">▶</span>
+                <p style="font-size:13px;margin-top:8px;">ভিডিও ১</p>
+              </div>
+              <div style="aspect-ratio:16/9;background:#27ae60;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;cursor:pointer;">
+                <span style="font-size:40px;">▶</span>
+                <p style="font-size:13px;margin-top:8px;">ভিডিও ২</p>
+              </div>
+              <div style="aspect-ratio:16/9;background:#e67e22;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;cursor:pointer;">
+                <span style="font-size:40px;">▶</span>
+                <p style="font-size:13px;margin-top:8px;">ভিডিও ৩</p>
+              </div>
+              <div style="aspect-ratio:16/9;background:#8e44ad;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;cursor:pointer;">
+                <span style="font-size:40px;">▶</span>
+                <p style="font-size:13px;margin-top:8px;">ভিডিও ৪</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar" id="video-sidebar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NEWS PAGE ===== -->
+<div id="page-news" class="page-section">
+  <div class="page-hero"><div class="container"><h2>নোটিশ</h2><div class="breadcrumb">প্রধান পাতা / নোটিশ</div></div></div>
+  <div class="container">
+    <div class="main-layout">
+      <div class="main-content">
+        <div class="section-box">
+          <div class="section-title"><span class="icon">📋</span> নোটিশ সমূহ:</div>
+          <div class="section-body">
+            <table class="data-table">
+              <thead><tr><th>তারিখ</th><th>নোটিশের শিরোনাম</th><th>দেখুন</th><th>ডাউনলোড</th></tr></thead>
+              <tbody>
+                <tr><td>০১ জানু ২০২৫</td><td>২০২৫ শিক্ষাবর্ষে ১ম শ্রেণিতে ভর্তি সংক্রান্ত</td><td><a href="#" class="btn-view">দেখুন</a></td><td><a href="#" class="btn-dl">ডাউনলোড</a></td></tr>
+                <tr><td>০১ জানু ২০২৫</td><td>ডিসেম্বর ২০২৪ মাসের বেতন পরিশোধ সংক্রান্ত বিজ্ঞপ্তি</td><td><a href="#" class="btn-view">দেখুন</a></td><td><a href="#" class="btn-dl">ডাউনলোড</a></td></tr>
+                <tr><td>০১ জানু ২০২৫</td><td>বার্ষিক পরীক্ষার রুটিন প্রকাশ সংক্রান্ত বিজ্ঞপ্তি</td><td><a href="#" class="btn-view">দেখুন</a></td><td><a href="#" class="btn-dl">ডাউনলোড</a></td></tr>
+                <tr><td>০১ জানু ২০২৫</td><td>স্কুল বাস সেবা সংক্রান্ত বিজ্ঞপ্তি ২০২৫</td><td><a href="#" class="btn-view">দেখুন</a></td><td><a href="#" class="btn-dl">ডাউনলোড</a></td></tr>
+                <tr><td>০১ জানু ২০২৫</td><td>বৃত্তি সংক্রান্ত প্রতারণা বিষয়ে সতর্কতা</td><td><a href="#" class="btn-view">দেখুন</a></td><td><a href="#" class="btn-dl">ডাউনলোড</a></td></tr>
+                <tr><td>০১ অক্টো ২০২৪</td><td>সেপ্টেম্বর ২০২৪ মাসের বেতন পরিশোধ সংক্রান্ত বিজ্ঞপ্তি</td><td><a href="#" class="btn-view">দেখুন</a></td><td><a href="#" class="btn-dl">ডাউনলোড</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar" id="news-sidebar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ADMIT CARD PAGE ===== -->
+<div id="page-admit_card" class="page-section">
+  <div class="page-hero"><div class="container"><h2>এডমিট কার্ড</h2><div class="breadcrumb">প্রধান পাতা / এডমিট কার্ড</div></div></div>
+  <div class="container" style="padding:30px 15px;">
+    <div class="main-layout">
+      <div class="main-content">
+        <div class="lookup-box">
+          <h3>🎫 এডমিট কার্ড ডাউনলোড</h3>
+          <div class="form-group">
+            <label>পরীক্ষা <span class="req">*</span></label>
+            <select class="form-control">
+              <option>নির্বাচন করুন</option>
+              <option>১ম সাময়িক পরীক্ষা</option>
+              <option>২য় সাময়িক পরীক্ষা</option>
+              <option>বার্ষিক পরীক্ষা</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>রেজিস্ট্রেশন নম্বর <span class="req">*</span></label>
+            <input type="text" class="form-control" placeholder="রেজিস্ট্রেশন নম্বর লিখুন">
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button class="btn-submit" onclick="alert('এডমিট কার্ড পাওয়া যায়নি। সঠিক তথ্য দিন।')">জমা দিন</button>
+            <button onclick="window.print()" style="background:#27ae60;color:#fff;padding:10px 20px;border:none;border-radius:4px;cursor:pointer;font-family:'Hind Siliguri',sans-serif;font-size:15px;">প্রিন্ট করুন</button>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar" id="admit-sidebar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== EXAM RESULTS PAGE ===== -->
+<div id="page-exam_results" class="page-section">
+  <div class="page-hero"><div class="container"><h2>পরীক্ষার রেজাল্ট</h2><div class="breadcrumb">প্রধান পাতা / পরীক্ষার রেজাল্ট</div></div></div>
+  <div class="container" style="padding:30px 15px;">
+    <div class="main-layout">
+      <div class="main-content">
+        <div class="lookup-box">
+          <h3>📊 পরীক্ষার রেজাল্ট দেখুন</h3>
+          <div class="form-group">
+            <label>পরীক্ষা <span class="req">*</span></label>
+            <select class="form-control">
+              <option>নির্বাচন করুন</option>
+              <option>১ম সাময়িক পরীক্ষা</option>
+              <option>২য় সাময়িক পরীক্ষা</option>
+              <option>বার্ষিক পরীক্ষা</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>শিক্ষাবর্ষ <span class="req">*</span></label>
+            <select class="form-control">
+              <option>নির্বাচন করুন</option>
+              <option>২০২৪-২০২৫</option>
+              <option>২০২৫-২০২৬</option>
+              <option>২০২৬-২০২৭</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>রেজিস্ট্রেশন নম্বর <span class="req">*</span></label>
+            <input type="text" class="form-control" placeholder="রেজিস্ট্রেশন নম্বর লিখুন">
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button class="btn-submit" onclick="alert('রেজাল্ট পাওয়া যায়নি। সঠিক তথ্য দিন।')">জমা দিন</button>
+            <button onclick="window.print()" style="background:#27ae60;color:#fff;padding:10px 20px;border:none;border-radius:4px;cursor:pointer;font-family:'Hind Siliguri',sans-serif;font-size:15px;">প্রিন্ট করুন</button>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar" id="result-sidebar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CERTIFICATE PAGE ===== -->
+<div id="page-certificates" class="page-section">
+  <div class="page-hero"><div class="container"><h2>সার্টিফিকেট</h2><div class="breadcrumb">প্রধান পাতা / সার্টিফিকেট</div></div></div>
+  <div class="container" style="padding:30px 15px;">
+    <div class="main-layout">
+      <div class="main-content">
+        <div class="lookup-box">
+          <h3>📜 সার্টিফিকেট ডাউনলোড</h3>
+          <div class="form-group">
+            <label>সার্টিফিকেটের ধরন <span class="req">*</span></label>
+            <select class="form-control">
+              <option>নির্বাচন করুন</option>
+              <option>স্কুল সার্টিফিকেট</option>
+              <option>প্রশংসাপত্র</option>
+              <option>স্থানান্তর সনদ</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>রেজিস্ট্রেশন নম্বর <span class="req">*</span></label>
+            <input type="text" class="form-control" placeholder="রেজিস্ট্রেশন নম্বর লিখুন">
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button class="btn-submit" onclick="alert('সার্টিফিকেট পাওয়া যায়নি। সঠিক তথ্য দিন।')">জমা দিন</button>
+            <button onclick="window.print()" style="background:#27ae60;color:#fff;padding:10px 20px;border:none;border-radius:4px;cursor:pointer;font-family:'Hind Siliguri',sans-serif;font-size:15px;">প্রিন্ট করুন</button>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar" id="cert-sidebar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONTACT PAGE ===== -->
+<div id="page-contact" class="page-section">
+  <div class="page-hero"><div class="container"><h2>যোগাযোগ</h2><div class="breadcrumb">প্রধান পাতা / যোগাযোগ</div></div></div>
+  <div class="container" style="padding:20px 15px;">
+    <div class="main-layout">
+      <div class="main-content">
+        <div class="section-box">
+          <div class="section-title"><span class="icon">📬</span> যোগাযোগ করতে নিচের ফরমটি পুরন করুন</div>
+          <div class="section-body">
+            <div class="contact-grid">
+              <div>
+                <div class="form-group">
+                  <label>নাম <span class="req">*</span></label>
+                  <input type="text" class="form-control" placeholder="আপনার নাম">
+                </div>
+                <div class="form-group">
+                  <label>ইমেইল <span class="req">*</span></label>
+                  <input type="email" class="form-control" placeholder="আপনার ইমেইল">
+                </div>
+                <div class="form-group">
+                  <label>ফোন <span class="req">*</span></label>
+                  <input type="tel" class="form-control" placeholder="আপনার ফোন নম্বর">
+                </div>
+                <div class="form-group">
+                  <label>বিষয় <span class="req">*</span></label>
+                  <input type="text" class="form-control" placeholder="বিষয় লিখুন">
+                </div>
+                <div class="form-group">
+                  <label>বার্তা <span class="req">*</span></label>
+                  <textarea class="form-control" rows="4" placeholder="আপনার বার্তা লিখুন"></textarea>
+                </div>
+                <button class="btn-submit" onclick="alert('আপনার বার্তা সফলভাবে পাঠানো হয়েছে!')">পাঠান</button>
+              </div>
+              <div>
+                <div class="contact-info-item">
+                  <span class="contact-icon">📍</span>
+                  <div class="contact-text">
+                    <h4>ঠিকানা</h4>
+                    <p>হাবিবপুর, বিরামপুর, দিনাজপুর</p>
+                  </div>
+                </div>
+                <div class="contact-info-item">
+                  <span class="contact-icon">📞</span>
+                  <div class="contact-text">
+                    <h4>ফোন</h4>
+                    <p>০১XXXXXXXXX</p>
+                  </div>
+                </div>
+                <div class="contact-info-item">
+                  <span class="contact-icon">✉️</span>
+                  <div class="contact-text">
+                    <h4>ইমেইল</h4>
+                    <p>info@meritcareschool.edu.bd</p>
+                  </div>
+                </div>
+                <div style="background:#f0f7ff;border-radius:4px;padding:20px;text-align:center;margin-top:10px;">
+                  <div style="font-size:50px;">🗺️</div>
+                  <p style="font-size:13px;color:#555;margin-top:8px;">হাবিবপুর, বিরামপুর, দিনাজপুর</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar" id="contact-sidebar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SOVAPOTI PAGE ===== -->
+<div id="page-sovapoti" class="page-section">
+  <div class="page-hero"><div class="container"><h2>সভাপতির বানী</h2><div class="breadcrumb">প্রধান পাতা / সভাপতির বানী</div></div></div>
+  <div class="container">
+    <div class="main-layout">
+      <div class="main-content">
+        <div class="section-box">
+          <div class="section-title"><span class="icon">💬</span> সভাপতির বানী :</div>
+          <div class="section-body">
+            <div style="text-align:center;margin-bottom:20px;">
+              <div style="width:120px;height:120px;border-radius:50%;background:#1a5276;display:flex;align-items:center;justify-content:center;color:#fff;font-size:50px;margin:0 auto 12px;border:4px solid #2e86c1;">👤</div>
+              <h3 style="color:#1a5276;">[সভাপতির নাম]</h3>
+              <p style="color:#666;font-size:13px;">সভাপতি, মেরিট কেয়ার স্কুল</p>
+            </div>
+            <div class="about-content">
+              <p>প্রিয় শিক্ষার্থীবৃন্দ, অভিভাবক ও শুভানুধ্যায়ীগণ,</p>
+              <p>মেরিট কেয়ার স্কুলের পক্ষ থেকে আপনাদের জানাই আন্তরিক শুভেচ্ছা ও অভিনন্দন। আমাদের প্রতিষ্ঠানটি শিক্ষার আলো ছড়িয়ে দিতে নিরলসভাবে কাজ করে যাচ্ছে। আমাদের লক্ষ্য হলো প্রতিটি শিক্ষার্থীকে নৈতিক মূল্যবোধ ও আধুনিক জ্ঞানে সমৃদ্ধ করে তোলা।</p>
+              <p>সকলের সহযোগিতা ও দোয়া কামনা করি।</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar" id="sovapoti-sidebar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRINCIPAL PAGE ===== -->
+<div id="page-principal" class="page-section">
+  <div class="page-hero"><div class="container"><h2>প্রধান শিক্ষকের বানী</h2><div class="breadcrumb">প্রধান পাতা / প্রধান শিক্ষকের বানী</div></div></div>
+  <div class="container">
+    <div class="main-layout">
+      <div class="main-content">
+        <div class="section-box">
+          <div class="section-title"><span class="icon">💬</span> প্রধান শিক্ষকের বানী :</div>
+          <div class="section-body">
+            <div style="text-align:center;margin-bottom:20px;">
+              <div style="width:120px;height:120px;border-radius:50%;background:#27ae60;display:flex;align-items:center;justify-content:center;color:#fff;font-size:50px;margin:0 auto 12px;border:4px solid #2ecc71;">👤</div>
+              <h3 style="color:#1a5276;">[প্রধান শিক্ষকের নাম]</h3>
+              <p style="color:#666;font-size:13px;">প্রধান শিক্ষক, মেরিট কেয়ার স্কুল</p>
+            </div>
+            <div class="about-content">
+              <p>প্রিয় শিক্ষার্থী ও অভিভাবকবৃন্দ,</p>
+              <p>আমাদের মেরিট কেয়ার স্কুলে আপনাদের স্বাগত জানাই। শিক্ষার মান উন্নয়নে আমরা প্রতিশ্রুতিবদ্ধ। প্রতিটি শিশুর সুপ্ত প্রতিভা বিকাশে আমাদের শিক্ষকমণ্ডলী অক্লান্ত পরিশ্রম করে যাচ্ছেন।</p>
+              <p>আমি আশাবাদী যে, আমাদের সম্মিলিত প্রচেষ্টায় মেরিট কেয়ার স্কুলের শিক্ষার্থীরা ভবিষ্যতে যোগ্য নাগরিক হিসেবে গড়ে উঠবে।</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar" id="principal-sidebar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LOGIN PAGE ===== -->
+<div id="page-login" class="page-section">
+  <div class="page-hero"><div class="container"><h2>লগইন</h2><div class="breadcrumb">প্রধান পাতা / লগইন</div></div></div>
+  <div class="container" style="padding:40px 15px;display:flex;justify-content:center;">
+    <div style="background:#fff;border-radius:8px;padding:35px;box-shadow:0 2px 20px rgba(0,0,0,0.1);width:100%;max-width:400px;text-align:center;">
+      <div style="width:80px;height:80px;background:#1a5276;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:35px;margin:0 auto 20px;">🔐</div>
+      <h3 style="color:#1a5276;margin-bottom:20px;">মেরিট কেয়ার স্কুল</h3>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="ইউজার নাম / আইডি">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="পাসওয়ার্ড">
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+        <label style="font-size:13px;color:#555;display:flex;align-items:center;gap:5px;"><input type="checkbox"> মনে রাখুন</label>
+        <a href="#" style="font-size:13px;color:#1a5276;">পাসওয়ার্ড ভুলে গেছেন?</a>
+      </div>
+      <button class="btn-submit" style="width:100%;" onclick="alert('লগইন করা সম্ভব হয়নি। সঠিক তথ্য দিন।')">লগইন করুন</button>
+      <div style="margin-top:20px;padding-top:15px;border-top:1px solid #eee;">
+        <p style="font-size:13px;color:#888;margin-bottom:10px;">আমাদের সোশ্যাল অ্যাকাউন্ট</p>
+        <div style="display:flex;justify-content:center;gap:10px;">
+          <a href="#" style="background:#3b5998;color:#fff;padding:6px 14px;border-radius:3px;text-decoration:none;font-size:13px;">Facebook</a>
+          <a href="#" style="background:#1da1f2;color:#fff;padding:6px 14px;border-radius:3px;text-decoration:none;font-size:13px;">Twitter</a>
+          <a href="#" style="background:#ff0000;color:#fff;padding:6px 14px;border-radius:3px;text-decoration:none;font-size:13px;">Youtube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <h3>মেরিট কেয়ার স্কুল</h3>
+        <p>হাবিবপুর, বিরামপুর, দিনাজপুর<br>
+        পরিচালনায়: আইডিয়াল লাইট হাউজ ফাউন্ডেশন<br>
+        মোবাইল: ০১XXXXXXXXX<br>
+        ইমেইল: info@meritcareschool.edu.bd</p>
+      </div>
+      <div class="footer-links">
+        <h3>দ্রুত লিঙ্ক</h3>
+        <ul>
+          <li><a href="#" onclick="showPage('about')">প্রতিষ্ঠানের ইতিহাস</a></li>
+          <li><a href="#" onclick="showPage('teachers')">শিক্ষকবৃন্দ</a></li>
+          <li><a href="#" onclick="showPage('admission')">অনলাইন এডমিশন</a></li>
+          <li><a href="#" onclick="showPage('news')">নোটিশ</a></li>
+          <li><a href="#" onclick="showPage('contact')">যোগাযোগ</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h3>একাডেমিক</h3>
+        <ul>
+          <li><a href="#" onclick="showPage('admit_card')">এডমিট কার্ড</a></li>
+          <li><a href="#" onclick="showPage('exam_results')">পরীক্ষার রেজাল্ট</a></li>
+          <li><a href="#" onclick="showPage('certificates')">সার্টিফিকেট</a></li>
+          <li><a href="#" onclick="showPage('gallery')">ফটো গ্যালারী</a></li>
+          <li><a href="#" onclick="showPage('video')">ভিডিও গ্যালারী</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      মেরিট কেয়ার স্কুল, হাবিবপুর, বিরামপুর, দিনাজপুর &nbsp;|&nbsp;
+      সকল কারিগরি সহযোগিতায়: <a href="https://www.hashan28.com" target="_blank">www.hashan28.com</a> &nbsp;|&nbsp;
+      ওয়েব সাইট ডিজাইন: <a href="https://www.hashan28.com" target="_blank">www.hashan28.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== PAGE NAVIGATION =====
+function showPage(page) {
+  // Hide all pages
+  document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+  // Show requested page
+  const el = document.getElementById('page-' + page);
+  if (el) {
+    el.classList.add('active');
+    // Inject sidebar into inner pages
+    injectSidebar(page);
+    window.scrollTo(0,0);
+  }
+  // Update nav active state
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  // Slider only on home
+  document.getElementById('mainSlider').style.display = (page === 'home') ? 'block' : 'none';
+}
+
+// ===== SIDEBAR INJECTION =====
+function getSidebarHTML() {
+  return `
+    <div class="sidebar-box">
+      <div class="pm-section">
+        <div class="person-avatar" style="background:#8e44ad;">🎖️</div>
+        <h4 style="color:#1a5276;font-size:14px;font-weight:700;margin-top:8px;">ড. মোঃ ইউনুস</h4>
+        <p style="font-size:12px;color:#666;">প্রধানমন্ত্রী<br>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</p>
+      </div>
+    </div>
+    <div class="sidebar-box">
+      <div class="person-card" onclick="showPage('sovapoti')">
+        <div class="person-avatar">👤</div>
+        <h4>সভাপতির বানী</h4>
+        <div style="background:#1a5276;height:2px;margin:6px auto;width:40px;border-radius:2px;"></div>
+        <h4 style="color:#333;">[সভাপতির নাম]</h4>
+        <p style="font-size:12px;color:#666;">সভাপতি<br>মেরিট কেয়ার স্কুল</p>
+      </div>
+    </div>
+    <div class="sidebar-box">
+      <div class="person-card" onclick="showPage('principal')">
+        <div class="person-avatar" style="background:#27ae60;">👤</div>
+        <h4>প্রধান শিক্ষকের বানী</h4>
+        <div style="background:#27ae60;height:2px;margin:6px auto;width:40px;border-radius:2px;"></div>
+        <h4 style="color:#333;">[প্রধান শিক্ষকের নাম]</h4>
+        <p style="font-size:12px;color:#666;">প্রধান শিক্ষক<br>মেরিট কেয়ার স্কুল</p>
+      </div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">গুরুত্বপূর্ণ লিঙ্ক</div>
+      <div class="sidebar-body">
+        <ul class="links-list">
+          <li><a href="http://www.moedu.gov.bd/" target="_blank">শিক্ষা মন্ত্রনালয়</a></li>
+          <li><a href="http://www.dhakaeducationboard.gov.bd/" target="_blank">মাধ্যমিক ও উচ্চমাধ্যমিক শিক্ষা বোর্ড</a></li>
+          <li><a href="http://www.dshe.gov.bd/" target="_blank">মাধ্যমিক ও উচ্চশিক্ষা অধিদপ্তর</a></li>
+          <li><a href="http://www.nu.ac.bd/" target="_blank">জাতীয় বিশ্ববিদ্যালয়</a></li>
+          <li><a href="http://www.bteb.gov.bd/" target="_blank">বাংলাদেশ কারিগরি শিক্ষা বোর্ড</a></li>
+          <li><a href="http://www.pmo.gov.bd/" target="_blank">প্রধানমন্ত্রীর কার্যালয়</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">জরুরি হটলাইন</div>
+      <div class="sidebar-body" style="padding:0;">
+        <div class="hotline-img">
+          <h3>🚨 জরুরি হটলাইন</h3>
+          <ul class="hotline-numbers">
+            <li>🚒 ফায়ার সার্ভিস: 199</li>
+            <li>🚓 পুলিশ: 999</li>
+            <li>🚑 অ্যাম্বুলেন্স: 199</li>
+            <li>ℹ️ তথ্য সেবা: 333</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function injectSidebar(page) {
+  const sidebarIds = {
+    'about':'about-sidebar','teachers':'teachers-sidebar','admission':'admission-sidebar',
+    'gallery':'gallery-sidebar','video':'video-sidebar','news':'news-sidebar',
+    'admit_card':'admit-sidebar','exam_results':'result-sidebar','certificates':'cert-sidebar',
+    'contact':'contact-sidebar','sovapoti':'sovapoti-sidebar','principal':'principal-sidebar'
+  };
+  const sid = sidebarIds[page];
+  if (sid) {
+    const el = document.getElementById(sid);
+    if (el && !el.innerHTML.trim()) el.innerHTML = getSidebarHTML();
+  }
+}
+
+// ===== SLIDER =====
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+function goSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = n;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+setInterval(() => { goSlide((currentSlide + 1) % slides.length); }, 4000);
+
+// ===== MOBILE NAV =====
+function toggleNav() {
+  const nav = document.getElementById('mainNav');
+  nav.classList.toggle('open');
+}
+
+// Init
+showPage('home');
+document.getElementById('mainSlider').style.display = 'block';
+</script>
+</body>
+</html>
